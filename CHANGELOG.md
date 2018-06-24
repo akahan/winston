@@ -1,5 +1,53 @@
 # CHANGELOG
 
+## v3.0.0 / 2018-06-12
+### GET IN THE CHOPPA EDITION
+
+- [#1332], (@DABH): logger.debug is sent to stderr (Fixed [#1024])
+- [#1328], (@ChrisAlderson): Logger level doesn't update transports level (Fixes [#1191]).
+- [#1356], (@indexzero) Move splat functionality into logform. (Fixes [#1298]).
+- [#1340], (@indexzero): Check log.length when evaluating "legacyness" of transports (Fixes [#1280]).
+- [#1346], (@indexzero): Implement `_final` from Node.js streams. (Related to winston-transport#24, Fixes [#1250]).
+- [#1347], (@indexzero): Wrap calls to `format.transform` with try / catch (Fixes [#1261]).
+- [#1357], (@indexzero): Remove paddings as we have no use for it in the current API.
+- [TODO]: REMAINS OPEN, NO PR (Fixes [#1289])
+- Documentation
+  - [#1301], (@westonpace) Cleaned up some of the documentation on `colorize`
+    to address concerns in [#1095].
+  - First pass at a heavy refactor of `docs/transports.md`.
+- Dependency management
+  - Regenerate `package-lock.json`.
+  - Upgrade to `logform@^1.9.0`.
+
+## v3.0.0-rc6 / 2018-05-30
+### T-MINUS 6-DAY TO WINSTON@3 EDITION
+
+- **Document that we are pushing for a June 5th, 2018 release of `winston@3.0.0`**
+- [#1287], (@DABH) Added types for Typescript.
+  - [#1335] Typescript: silent is boolean.
+  - [#1323] Add level method to default logger.
+- [#1286], (@ChrisAlderson) Migrate codebase to ES6
+  - [#1324], (@ChrisAlderson) Fix regression introduced by ES6 migration for
+    exception handling.
+  - [#1333], (@ChrisAlderson) Fix removing all loggers from a container.
+- [#1291], [#1294], [#1318], (@indexzero, @ChrisAlderson, @mempf) Improvements
+  to `File` transport core functionality. Fixes [#1194].
+- [#1311], (@ChrisAlderson) Add `eol` option to `Stream` transport.
+- [#1297], (@ChrisAlderson) Move `winston.config` to `triple-beam`. Expose
+  for backwards compatibility.
+- [#1320], (@ChrisAlderson) Enhance tests to run on Windows.
+- Internal project maintenance
+  - Bump to `winston-transport@4.0.0` which may cause incompatibilities if
+    your custom transport does not explicitly require `winston-transport`
+    itself. 
+  - [#1292], (@ChrisAlderson) Add node v10 to TravisCI build matrix.
+  - [#1296], (@indexzero) Improve `UPGRADE-3.0.md`. Add Github Issue Template.
+  - Remove "npm run report" in favor of reports being automatically generate.
+  - Update `logform`, `triple-beam`, and `winston-transport` to latest.
+
+> Special thanks to our newest `winston` core team member – @ChrisAlderson for 
+> helping make `winston@3.0.0` a reality next week!
+
 ## v3.0.0-rc5 / 2018-04-20
 ### UNOFFICIAL NATIONAL HOLIDAY EDITION
 

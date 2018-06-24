@@ -1,11 +1,12 @@
 {
   "name": "winston",
-  "description": "A multi-transport async logging library for Node.js",
-  "version": "3.0.0-rc5",
+  "description": "A logger for just about everything.",
+  "version": "3.0.0",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "maintainers": [
     "Jarrett Cruger <jcrugzz@gmail.com>",
-    "Alberto Pose <albertopose@gmail.com>"
+    "Chris Alderson <chrisalderson@protonmail.com>",
+    "David Hyde <dabh@stanford.edu>"
   ],
   "repository": {
     "type": "git",
@@ -13,19 +14,27 @@
   },
   "keywords": [
     "winston",
+    "logger",
     "logging",
+    "logs",
     "sysadmin",
-    "tools"
+    "bunyan",
+    "pino",
+    "loglevel",
+    "tools",
+    "json",
+    "stream"
   ],
   "dependencies": {
     "async": "^2.6.0",
     "diagnostics": "^1.0.1",
     "is-stream": "^1.1.0",
-    "logform": "^1.4.1",
+    "logform": "^1.9.0",
     "one-time": "0.0.4",
+    "readable-stream": "^2.3.6",
     "stack-trace": "0.0.x",
-    "triple-beam": "^1.0.1",
-    "winston-transport": "^3.1.0"
+    "triple-beam": "^1.3.0",
+    "winston-transport": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^9.6.6",
@@ -37,17 +46,19 @@
     "hock": "^1.3.2",
     "mocha": "^3.2.0",
     "nyc": "^11.2.1",
+    "rimraf": "^2.6.2",
     "split2": "^2.1.1",
     "std-mocks": "^1.0.0",
     "through2": "^2.0.0",
     "winston-compat": "^0.1.1"
   },
   "main": "./lib/winston",
+  "types": "./index.d.ts",
   "scripts": {
     "lint": "populist lib/*.js lib/winston/*.js lib/winston/**/*.js",
     "pretest": "npm run lint",
-    "test": "nyc mocha test/*.test.js test/**/*.test.js",
-    "report": "nyc report --reporter=lcov"
+    "test": "nyc --reporter=text --reporter lcov npm run test:mocha",
+    "test:mocha": "mocha test/*.test.js test/**/*.test.js"
   },
   "engines": {
     "node": ">= 6.4.0"

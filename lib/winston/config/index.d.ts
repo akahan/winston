@@ -47,6 +47,7 @@ declare namespace winston {
     error: number;
     warn: number;
     info: number;
+    http: number;
     verbose: number;
     debug: number;
     silly: number;
@@ -90,8 +91,6 @@ declare namespace winston {
     syslog: { levels: SyslogConfigSetLevels, colors: SyslogConfigSetColors };
 
     addColors(colors: AbstractConfigSetColors): void;
-
-    colorize(level: number, message?: string): string;
   }
 }
 

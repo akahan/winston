@@ -22,8 +22,8 @@ declare namespace winston {
     handlers: Map<any, any>;
     catcher: Function | boolean;
 
-    handle(): void;
-    unhandle(): void;
+    handle(...transports: Transport[]): void;
+    unhandle(...transports: Transport[]): void;
     getAllInfo(err: string | Error): object;
     getProcessInfo(): object;
     getOsInfo(): object;
@@ -72,7 +72,7 @@ declare namespace winston {
 
   interface LoggerOptions {
     levels?: Config.AbstractConfigSetLevels;
-    silent?: string;
+    silent?: boolean;
     format?: logform.Format;
     level?: string;
     exitOnError?: Function | boolean;
@@ -86,7 +86,6 @@ declare namespace winston {
     levels: Config.AbstractConfigSetLevels;
     level: string;
     transports: Transport[];
-    paddings: string[];
     exceptions: ExceptionHandler;
     profilers: object;
     exitOnError: Function | boolean;
@@ -97,7 +96,7 @@ declare namespace winston {
     clear(): Logger;
     close(): Logger;
 
-    // for cli levels
+    // for cli and npm levels
     error: LeveledLogMethod;
     warn: LeveledLogMethod;
     help: LeveledLogMethod;
@@ -105,6 +104,7 @@ declare namespace winston {
     info: LeveledLogMethod;
     debug: LeveledLogMethod;
     prompt: LeveledLogMethod;
+    http: LeveledLogMethod;
     verbose: LeveledLogMethod;
     input: LeveledLogMethod;
     silly: LeveledLogMethod;
@@ -146,7 +146,16 @@ declare namespace winston {
   let addColors: (target: Config.AbstractConfigSetColors) => any;
   let createLogger: (options?: LoggerOptions) => Logger;
 
-  // Pass-through methods routed to the default logger.
+  // Pass-through npm level methods routed to the default logger.
+  let error: LeveledLogMethod;
+  let warn: LeveledLogMethod;
+  let info: LeveledLogMethod;
+  let http: LeveledLogMethod;
+  let verbose: LeveledLogMethod;
+  let debug: LeveledLogMethod;
+  let silly: LeveledLogMethod;
+
+  // Other pass-through methods routed to the default logger.
   let log: LogMethod;
   let query: (options?: QueryOptions, callback?: (err: Error, results: any) => void) => any;
   let stream: (options?: any) => NodeJS.ReadableStream;
@@ -158,7 +167,6 @@ declare namespace winston {
   let configure: (options: LoggerOptions) => void;
   let level: string;
   let exceptions: ExceptionHandler;
-  let paddings: string[];
   let exitOnError: Function | boolean;
   // let default: object;
 }
